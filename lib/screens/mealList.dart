@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stewgo_app/models/mealList.dart';
 import 'package:stewgo_app/models/meal.dart';
+import 'package:stewgo_app/utils/dataService.dart';
 
 class MealList extends StatelessWidget {
 
@@ -58,7 +59,7 @@ class _MyListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme.body1;
-    var imageUrl = "https://assets.stewgo.com.au/meals/${meal.id}.jpg";
+    var imageUrl = DataService().getImageUrl(meal.id);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -97,12 +98,14 @@ class _MyAppBar extends StatelessWidget {
     return SliverAppBar(
       title: Text('Meals', style: Theme.of(context).textTheme.display4),
       floating: true,
+      /*
       actions: [
         IconButton(
           icon: Icon(Icons.home),
           onPressed: () => Navigator.pushReplacementNamed(context, '/'),
         ),
       ],
+       */
     );
   }
 }
