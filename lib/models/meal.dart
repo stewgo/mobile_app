@@ -19,10 +19,10 @@ class MealModel {
   static MealModel fromMap(dynamic map) {
     return MealModel(
         //TODO Michal: find a better way
-        id: map['ID'] as int,
-        name: map['Name'] as String,
-        description: map['Description'] as String,
-        merchant: map['Merchant'] as String
+        id: map['id'] as int,
+        name: map['productName'] as String,
+        description: map['description'] as String,
+        merchant: map['merchantName'] as String
     );
    }
 }

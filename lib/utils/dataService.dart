@@ -7,10 +7,10 @@ class DataService {
   //static const URL = 'https://p48o31wsud.execute-api.ap-southeast-2.amazonaws.com';
 
   // For physical device:
-  static const URL = 'localhost:5000';
+  //static const URL = 'localhost:5000';
 
   // For emulator:
-  //static const URL = '10.0.2.2:8888';
+  static const URL = '10.0.2.2:8888';
 
   dynamic getMeals() async {
     if (USE_RESTFUL_API) {
@@ -21,7 +21,7 @@ class DataService {
   }
 
   dynamic getMealsFromAPI() async {
-     final response = await http.get(new Uri.http(URL, 'meals'));
+     final response = await http.get(new Uri.http(URL, 'products'));
      print(response.body);
 
      return json.decode(response.body);
@@ -29,18 +29,39 @@ class DataService {
 
   dynamic getMealsFromDummyData() async {
     return Future<dynamic>.delayed(Duration(seconds: 1), () {
-      return [
-        {"Merchant":"Papa Johns","Description":"Yummy pizza","ID":2,"Name":"Pizza"},
-        {"Merchant":"John Smith","Description":"Spaghetti with mince in a tomato sauce.","ID":1,"Name":"Spaghetti Bolognese"},
-        {"Merchant":"John Connor Smith Long Name","Description":"Pork dumplings long lorem ipsum.... long description... long description... final","ID":3,"Name":"Pork Dumplings"},
-        {"Merchant":"Max","Description":"Classic dish","ID":4,"Name":"Fish and Chips"},
-      ];
+      return [{
+        "id": 1,
+        "productName": "Spaghetti bolognese",
+        "merchantName": "John Smith",
+        "price": "8.50",
+        "availableDate": "8pm",
+        "description": "Spaghetti with mince beef and tomato sauce"
+      }, {
+        "id": 2,
+        "productName": "Pizza",
+        "merchantName": "John Smith",
+        "price": "12.00",
+        "availableDate": "5pm",
+        "description": "Pizza with cheesee and pepperoni"
+      }, {
+        "id": 3,
+        "productName": "Pork dumplings",
+        "merchantName": "John Smith",
+        "price": "9.50",
+        "availableDate": "7pm",
+        "description": "Pork dumplings lorem ispum long long long"
+      }, {
+        "id": 4,
+        "productName": "Fish and Chips",
+        "merchantName": "John Smith",
+        "price": "11.00",
+        "availableDate": "9pm",
+        "description": "Snapper fish with chips that with chicken salt"
+      }];
     });
   }
   // TODO Michal: make this used
   String getImageUrl(int id) {
     return "https://assets.stewgo.com.au/meals/${id}.jpg";
   }
-
-// {"Items":[{"Seller":"Papa Johns","Description":"Yummy pizza","ID":2,"Name":"Pizza"},{"Seller":"John Smith","Description":"Spaghetti with mince in a tomato sauce.","ID":1,"Name":"Spaghetti Bolognese"}],"Count":2,"ScannedCount":2}
 }
