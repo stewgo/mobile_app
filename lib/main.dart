@@ -8,6 +8,7 @@ import 'package:stewgo_app/common/theme.dart';
 import 'package:stewgo_app/models/mealList.dart';
 import 'package:stewgo_app/screens/mealList.dart';
 import 'package:stewgo_app/screens/meal.dart';
+import 'package:stewgo_app/screens/orderConfirmation.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => MealList(),
-          '/meal': (context) => Meal()
+          '/meal': (context) => Meal(),
+          '/orderConfirmation': (context) => OrderConfirmation()
         },
       ),
     );

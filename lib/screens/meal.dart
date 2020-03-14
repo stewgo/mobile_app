@@ -26,7 +26,7 @@ class Meal extends StatelessWidget {
                 ButtonBar(
                   children: [
                     RaisedButton(
-                      onPressed: () {},
+                      onPressed: () => Navigator.pushNamed(context, '/orderConfirmation'),
                       child: const Text(
                           'Order',
                           style: TextStyle(fontSize: 20)
