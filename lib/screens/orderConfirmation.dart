@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stewgo_app/models/meal.dart';
+import 'package:stewgo_app/models/product.dart';
 import 'package:stewgo_app/utils/dataService.dart';
 
 class OrderConfirmation extends StatelessWidget {

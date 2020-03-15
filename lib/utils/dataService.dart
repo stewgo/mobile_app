@@ -12,22 +12,22 @@ class DataService {
   // For emulator:
   static const URL = '10.0.2.2:8888';
 
-  dynamic getMeals() async {
+  dynamic getProducts() async {
     if (USE_RESTFUL_API) {
-      return this.getMealsFromAPI();
+      return this.getProductsFromAPI();
     } else {
-      return this.getMealsFromDummyData();
+      return this.getProductsFromDummyData();
     }
   }
 
-  dynamic getMealsFromAPI() async {
+  dynamic getProductsFromAPI() async {
      final response = await http.get(new Uri.http(URL, 'products'));
      print(response.body);
 
      return json.decode(response.body);
   }
 
-  dynamic getMealsFromDummyData() async {
+  dynamic getProductsFromDummyData() async {
     return Future<dynamic>.delayed(Duration(seconds: 1), () {
       return [{
         "id": 1,
@@ -60,8 +60,8 @@ class DataService {
       }];
     });
   }
-  // TODO Michal: make this used
+
   String getImageUrl(int id) {
-    return "https://assets.stewgo.com.au/meals/${id}.jpg";
+    return "https://assets.stewgo.com.au/products/${id}.jpg";
   }
 }

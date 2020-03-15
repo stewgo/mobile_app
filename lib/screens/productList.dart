@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stewgo_app/models/mealList.dart';
-import 'package:stewgo_app/models/meal.dart';
+import 'package:stewgo_app/models/productList.dart';
+import 'package:stewgo_app/models/product.dart';
 import 'package:stewgo_app/utils/dataService.dart';
 
-class MealList extends StatelessWidget {
+class ProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
    return
-     Consumer<MealListModel>(
+     Consumer<ProductListModel>(
          builder: (context, mealList, child) {
            if (mealList.isLoaded()) {
              return _ListView(mealList.getMeals());
@@ -22,7 +22,7 @@ class MealList extends StatelessWidget {
 }
 
 class _ListView extends StatelessWidget {
-  final List<MealModel> mealList;
+  final List<ProductModel> mealList;
 
   _ListView(this.mealList);
 
@@ -52,7 +52,7 @@ class _ListView extends StatelessWidget {
 }
 
 class _MyListItem extends StatelessWidget {
-  final MealModel meal;
+  final ProductModel meal;
 
   _MyListItem(this.meal, {Key key}) : super(key: key);
 
@@ -66,7 +66,7 @@ class _MyListItem extends StatelessWidget {
       child: LimitedBox(
         maxHeight: 150,
         child: GestureDetector(
-          onTap: () => Navigator.pushNamed(context, '/meal', arguments: meal),
+          onTap: () => Navigator.pushNamed(context, '/product', arguments: meal),
           child: Row(
             children: [
               Image.network(imageUrl, width: 150, height: 150),

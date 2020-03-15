@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
 @immutable
-class MealModel {
+class ProductModel {
   final int id;
   final String name;
   final String description;
   final String merchant;
 
 
-  MealModel({ this.id, this.name, this.description, this.merchant });
+  ProductModel({ this.id, this.name, this.description, this.merchant });
 
   @override
   int get hashCode => id;
 
   @override
-  bool operator ==(Object other) => other is MealModel && other.id == id;
+  bool operator ==(Object other) => other is ProductModel && other.id == id;
 
-  static MealModel fromMap(dynamic map) {
-    return MealModel(
+  static ProductModel fromMap(dynamic map) {
+    return ProductModel(
         //TODO Michal: find a better way
         id: map['id'] as int,
         name: map['productName'] as String,

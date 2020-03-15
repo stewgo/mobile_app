@@ -5,9 +5,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stewgo_app/common/theme.dart';
-import 'package:stewgo_app/models/mealList.dart';
-import 'package:stewgo_app/screens/mealList.dart';
-import 'package:stewgo_app/screens/meal.dart';
+import 'package:stewgo_app/models/productList.dart';
+import 'package:stewgo_app/screens/productList.dart';
+import 'package:stewgo_app/screens/product.dart';
 import 'package:stewgo_app/screens/orderConfirmation.dart';
 
 void main() {
@@ -20,15 +20,15 @@ class MyApp extends StatelessWidget {
     // Using MultiProvider is convenient when providing multiple objects.
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(builder: (context) => MealListModel()),
+        ChangeNotifierProvider(builder: (context) => ProductListModel()),
       ],
       child: MaterialApp(
         title: 'Stewgo',
         theme: appTheme,
         initialRoute: '/',
         routes: {
-          '/': (context) => MealList(),
-          '/meal': (context) => Meal(),
+          '/': (context) => ProductList(),
+          '/product': (context) => Product(),
           '/orderConfirmation': (context) => OrderConfirmation()
         },
       ),

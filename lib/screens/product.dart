@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:stewgo_app/models/meal.dart';
+import 'package:stewgo_app/models/product.dart';
 import 'package:stewgo_app/utils/dataService.dart';
 
-class Meal extends StatelessWidget {
+class Product extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-      final MealModel args = ModalRoute.of(context).settings.arguments;
+      final ProductModel args = ModalRoute.of(context).settings.arguments;
       final imageUrl = DataService().getImageUrl(args.id);
 
       return Scaffold(
