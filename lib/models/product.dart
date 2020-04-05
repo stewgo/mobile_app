@@ -6,9 +6,12 @@ class ProductModel {
   final String name;
   final String description;
   final String merchant;
+  final String image;
+  final String price;
+  final String availableDate;
 
 
-  ProductModel({ this.id, this.name, this.description, this.merchant });
+  ProductModel({ this.id, this.name, this.description, this.merchant, this.image, this.price, this.availableDate });
 
   @override
   int get hashCode => id;
@@ -22,7 +25,10 @@ class ProductModel {
         id: map['id'] as int,
         name: map['productName'] as String,
         description: map['description'] as String,
-        merchant: map['merchantName'] as String
+        merchant: map['merchantName'] as String,
+        image: map['image'] as String,
+        price: map['price'] as String,
+        availableDate: map['availableDate'] as String
     );
    }
 }

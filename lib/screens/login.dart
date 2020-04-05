@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _submitButton() {
     return InkWell(
-      onTap: () => Navigator.pushNamed(context, '/productList'),
+      onTap: () => Navigator.pushReplacementNamed(context, '/productList'),
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 15),

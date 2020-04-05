@@ -59,7 +59,7 @@ class _MyListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme.body1;
-    var imageUrl = DataService().getImageUrl(meal.id);
+    var imageUrl = DataService().getImageUrl(meal.image);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -78,8 +78,8 @@ class _MyListItem extends StatelessWidget {
                   children: [
                     Text(meal.name, style: textTheme),
                     Text('Seller:' + meal.merchant, style: textTheme),
-                    Text('Price: \$8.50'),
-                    Text('Available from 8pm')
+                    Text('Price: \$' + meal.price),
+                    Text('Available from ' + meal.availableDate)
                   ]
                 ),
               )

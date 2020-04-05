@@ -7,7 +7,7 @@ class Product extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
       final ProductModel args = ModalRoute.of(context).settings.arguments;
-      final imageUrl = DataService().getImageUrl(args.id);
+      final imageUrl = DataService().getImageUrl(args.image);
 
       return Scaffold(
           appBar: AppBar(
@@ -21,8 +21,8 @@ class Product extends StatelessWidget {
                 Image.network(imageUrl, width: 300, height: 300),
                 Text(args.merchant),
                 Text(args.description),
-                Text('Price: \$8.50'),
-                Text('Available from 8pm'),
+                Text('Price: \$' + args.price),
+                Text('Available from ' + args.availableDate),
                 ButtonBar(
                   children: [
                     RaisedButton(
