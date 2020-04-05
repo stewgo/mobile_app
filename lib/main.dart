@@ -9,6 +9,8 @@ import 'package:stewgo_app/models/productList.dart';
 import 'package:stewgo_app/screens/productList.dart';
 import 'package:stewgo_app/screens/product.dart';
 import 'package:stewgo_app/screens/orderConfirmation.dart';
+import 'package:stewgo_app/screens/register.dart';
+import 'package:stewgo_app/screens/login.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,9 +29,11 @@ class MyApp extends StatelessWidget {
         theme: appTheme,
         initialRoute: '/',
         routes: {
-          '/': (context) => ProductList(),
+          '/productList': (context) => ProductList(),
           '/product': (context) => Product(),
-          '/orderConfirmation': (context) => OrderConfirmation()
+          '/orderConfirmation': (context) => OrderConfirmation(),
+          '/register': (context) => RegisterPage(),
+          '/': (context) => LoginPage()
         },
       ),
     );
