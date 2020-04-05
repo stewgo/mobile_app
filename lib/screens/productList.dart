@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:stewgo_app/models/productList.dart';
 import 'package:stewgo_app/models/product.dart';
 import 'package:stewgo_app/utils/dataService.dart';
+import 'package:stewgo_app/widgets/reusableDrawer.dart';
 
 class ProductList extends StatelessWidget {
 
@@ -30,6 +31,7 @@ class _ListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: ReusableDrawer(),
       body: CustomScrollView(
         slivers: [
           _MyAppBar(),
