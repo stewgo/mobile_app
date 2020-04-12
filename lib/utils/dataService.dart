@@ -17,7 +17,7 @@ class DataService {
      return json.decode(response.body);
   }
 
-  dynamic login(String username, String password) async {
+  Future<Map<String, dynamic>> login(String username, String password) async {
     Map<String,String> headers = {
       'Content-type' : 'application/json',
       'Accept': 'application/json',
@@ -28,7 +28,7 @@ class DataService {
         headers: headers
     );
 
-    return json.decode(response.body);
+    return new Map<String, dynamic>.from(json.decode(response.body));
   }
 
   String getImageUrl(String fileName) {

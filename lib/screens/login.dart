@@ -20,6 +20,8 @@ class _LoginPageState extends State<LoginPage> {
 
     dataService.login(username, password).then((response) {
       if (response.containsKey('token')) {
+        // TODO: this should call the login action, etc
+        // For now we just have a hard coded token in the store.
         Navigator.pushReplacementNamed(context, '/productList');
       } else {
         print('failed to log in');

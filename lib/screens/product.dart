@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:stewgo_app/models/product.dart';
 import 'package:stewgo_app/utils/dataService.dart';
+import 'package:stewgo_app/redux/states/product.dart' as ProductState;
+
 
 class Product extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-      final ProductModel args = ModalRoute.of(context).settings.arguments;
+      final ProductState.Product args = ModalRoute.of(context).settings.arguments;
       final imageUrl = DataService().getImageUrl(args.image);
 
       return Scaffold(
