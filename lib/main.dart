@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //TODO Michal: remove this hard coded token
-    store.dispatch(LoginAction('/3oLILDDNGH5jUj3FAVPPABAMR5IjSvB'));
+    store.dispatch(LoginAction('lu8wgdEn4ZKI2/SL3AELkCJ5frPw4ax9'));
     store.dispatch(fetchProducts());
 
     return StoreProvider(

@@ -1,17 +1,18 @@
 import 'package:redux/redux.dart';
 import 'package:stewgo_app/redux/states/appState.dart';
 
-class BaseModel {
+// TODO Michal: could be deleted
+class OrderConfirmationModel {
   final String accessToken;
 
-  BaseModel({
+  OrderConfirmationModel({
     this.accessToken
   });
 
-  static BaseModel fromStore(Store<AppState> store) {
+  static OrderConfirmationModel fromStore(Store<AppState> store) {
     print(store.state.productsById);
     print(store.state.accessToken);
-    return BaseModel(
+    return OrderConfirmationModel(
       accessToken: store.state.accessToken
     );
   }

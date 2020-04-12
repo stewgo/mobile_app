@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:stewgo_app/redux/states/appState.dart';
-import 'package:stewgo_app/models/base.dart';
+import 'package:stewgo_app/redux/states/order.dart';
 
 class OrderConfirmation extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-      return new StoreConnector<AppState, BaseModel>(
-        converter: (store) => BaseModel.fromStore(store),
+      return new StoreConnector<AppState, Order>(
+        converter: (store) => store.state.order,
         builder: (context, viewModel) {
 
           return Scaffold(
@@ -20,7 +20,7 @@ class OrderConfirmation extends StatelessWidget {
               ),
               body: Container(
                   padding: EdgeInsets.only(left: 20, right: 20, top: 20),
-                  child: Text('Order has been confirmed!')
+                  child: Text('Order has been confirmed! Address is: ' + viewModel.merchant.address)
               )
           );
         }

@@ -36,7 +36,7 @@ class Product {
     return Product(
       //TODO Michal: find a better way
         id: map['id'] as int,
-        name: map['productName'] as String,
+        name: map['name'] as String,
         description: map['description'] as String,
         merchant: map['merchantName'] as String,
         image: map['image'] as String,
