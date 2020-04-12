@@ -31,6 +31,21 @@ class DataService {
     return new Map<String, dynamic>.from(json.decode(response.body));
   }
 
+  Future<Map<String, dynamic>> orderProduct(int productId, String accessToken) async {
+    Map<String,String> headers = {
+      'Content-type' : 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $accessToken'
+    };
+    final response = await http.post(
+        new Uri.http(URL, 'orders'),
+        body: json.encode({'productId': productId }),
+        headers: headers
+    );
+
+    return new Map<String, dynamic>.from(json.decode(response.body));
+  }
+
   String getImageUrl(String fileName) {
     return "https://assets.stewgo.com.au/products/$fileName";
   }

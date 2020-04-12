@@ -22,6 +22,12 @@ void main() {
   runApp(MyApp());
 }
 
+// Keys is here so we can navigate from anywhere.
+// https://brainsandbeards.com/blog/ultimate-redux-guide-for-flutter
+class Keys {
+  static final navKey = new GlobalKey<NavigatorState>();
+}
+
 class MyApp extends StatelessWidget {
   final store = Store<AppState>(
       appStateReducer,
@@ -47,6 +53,7 @@ class MyApp extends StatelessWidget {
             title: 'Stewgo',
             theme: appTheme,
             initialRoute: '/',
+            navigatorKey: Keys.navKey,
             routes: {
               '/productList': (context) => ProductList(),
               '/product': (context) => Product(),
