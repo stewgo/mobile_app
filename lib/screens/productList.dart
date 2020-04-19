@@ -3,6 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:stewgo_app/redux/states/appState.dart';
 import 'package:stewgo_app/redux/states/product.dart';
 import 'package:stewgo_app/utils/dataService.dart';
+import 'package:stewgo_app/utils/formatDateTime.dart';
 import 'package:stewgo_app/widgets/reusableDrawer.dart';
 
 class ProductList extends StatelessWidget {
@@ -72,7 +73,7 @@ class _MyListItem extends StatelessWidget {
                     Text(meal.name, style: textTheme),
                     Text('Seller:' + meal.merchant, style: textTheme),
                     Text('Price: \$' + meal.price),
-                    Text('Available from ' + meal.availableDate)
+                    Text('Available from ' + formatDateTime(meal.availableDate))
                   ]
                 ),
               )

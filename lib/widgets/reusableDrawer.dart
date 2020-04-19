@@ -16,6 +16,10 @@ class ReusableDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
+            title: Text('Your Order'),
+            onTap: () => Navigator.pushReplacementNamed(context, '/yourOrder'),
+          ),
+          ListTile(
             title: Text('Logout'),
             onTap: () => Navigator.pushReplacementNamed(context, '/'),
           ),

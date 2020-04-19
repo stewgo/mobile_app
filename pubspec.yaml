@@ -22,6 +22,7 @@ dependencies:
   # Import the provider package.
   provider: ^3.1.0
   http: ^0.12.0
+  intl: ^0.16.1
   redux: ^4.0.0
   flutter_redux: ^0.6.0
   redux_thunk: ^0.3.0

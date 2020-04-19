@@ -5,6 +5,7 @@ import 'package:stewgo_app/redux/actions/orderProduct.dart';
 import 'package:stewgo_app/redux/states/appState.dart';
 import 'package:stewgo_app/utils/dataService.dart';
 import 'package:stewgo_app/redux/states/product.dart' as ProductState;
+import 'package:stewgo_app/utils/formatDateTime.dart';
 
 
 class Product extends StatelessWidget {
@@ -17,7 +18,7 @@ class Product extends StatelessWidget {
       Text(product.merchant),
       Text(product.description),
       Text('Price: \$' + product.price),
-      Text('Available from ' + product.availableDate),
+      Text('Available from ' + formatDateTime(product.availableDate)),
       ButtonBar(
           children: [
             RaisedButton(

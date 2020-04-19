@@ -17,6 +17,7 @@ import 'package:stewgo_app/redux/reducers/app.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
+import 'package:stewgo_app/screens/yourOrder.dart';
 
 void main() {
   runApp(MyApp());
@@ -58,6 +59,7 @@ class MyApp extends StatelessWidget {
               '/productList': (context) => ProductList(),
               '/product': (context) => Product(),
               '/orderConfirmation': (context) => OrderConfirmation(),
+              '/yourOrder': (context) => YourOrder(),
               '/register': (context) => RegisterPage(),
               '/': (context) => LoginPage()
             },

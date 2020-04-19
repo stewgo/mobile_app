@@ -8,9 +8,10 @@ class User {
   final String email;
   final String phoneNumber;
   final String address;
+  final String pickupInfo;
 
 
-  User({ this.id, this.username, this.name, this.email, this.phoneNumber, this.address });
+  User({ this.id, this.username, this.name, this.email, this.phoneNumber, this.address, this.pickupInfo });
 
   User copyWith({
     int id,
@@ -18,7 +19,8 @@ class User {
     String name,
     String email,
     String phoneNumber,
-    String address
+    String address,
+    String pickupInfo
   }) {
     return User(
       id: id ?? this.id,
@@ -27,6 +29,7 @@ class User {
       email: email ?? this.email,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       address: address ?? this.address,
+      pickupInfo: pickupInfo ?? this.pickupInfo
     );
   }
 
@@ -39,6 +42,7 @@ class User {
       email: map['email'] as String,
       phoneNumber: map['phoneNumber'] as String,
       address: map['address'] as String,
+      pickupInfo: map['pickupInfo'] as String,
     );
   }
 

@@ -4,7 +4,7 @@ import 'package:stewgo_app/redux/states/appState.dart';
 import 'package:stewgo_app/redux/states/order.dart';
 import 'package:stewgo_app/utils/formatDateTime.dart';
 
-class OrderConfirmation extends StatelessWidget {
+class YourOrder extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class OrderConfirmation extends StatelessWidget {
 
           return Scaffold(
               appBar: AppBar(
-                title: Text('Order confirmation', style: Theme
+                title: Text('Your Order', style: Theme
                     .of(context)
                     .textTheme
                     .display4),
@@ -24,7 +24,7 @@ class OrderConfirmation extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('Ordered! Your meal will be ready at: ' + formatDateTime(viewModel.product.availableDate)),
+                      Text('Your meal will be ready at: ' + formatDateTime(viewModel.product.availableDate)),
                       Text(''),
                       Text(viewModel.product.name),
                       Text('\$' + viewModel.product.price),
