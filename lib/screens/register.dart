@@ -37,7 +37,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Widget _submitButton() {
     return InkWell(
-      onTap: () => Navigator.pushNamed(context, '/productList'),
+      onTap: () => Navigator.pushNamed(context, '/ProductList'),
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 15),
@@ -99,8 +99,6 @@ class _RegisterPageState extends State<RegisterPage> {
         _entryField("Confirm Password", isPassword: true),
         _entryField("phoneNumber"),
         _entryField("address"),
-
-
       ],
     );
   }
@@ -139,13 +137,6 @@ class _RegisterPageState extends State<RegisterPage> {
                           height: 5,
                         ),
                         _submitButton(),
-                        Container(
-                          padding: EdgeInsets.symmetric(vertical: 5),
-                          alignment: Alignment.centerRight,
-                          child: Text('Forgot Password ?',
-                              style:
-                              TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
-                        ),
                         _divider(),
                         Expanded(
                           flex: 3,
