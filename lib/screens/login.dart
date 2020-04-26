@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stewgo_app/utils/dataService.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key, this.title}) : super(key: key);
@@ -11,7 +12,25 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  Widget _entryField(String title, {bool isPassword = false}) {
+  _handleLogin() {
+    String username = 'test_purchaser';
+    String password = 'password';
+
+    DataService dataService = new DataService();
+
+    dataService.login(username, password).then((response) {
+      if (response.containsKey('token')) {
+        // TODO: this should call the login action, etc
+        // For now we just have a hard coded token in the store.
+        Navigator.pushReplacementNamed(context, '/productList');
+      } else {
+        print('failed to log in');
+      }
+    });
+
+  }
+
+  Widget _entryField(String title, {bool isPassword = false, initialValue}) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -24,7 +43,8 @@ class _LoginPageState extends State<LoginPage> {
           SizedBox(
             height: 10,
           ),
-          TextField(
+          TextFormField(
+              initialValue: initialValue,
               obscureText: isPassword,
               decoration: InputDecoration(
                   border: InputBorder.none,
@@ -37,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _submitButton() {
     return InkWell(
-      onTap: () => Navigator.pushNamed(context, '/productList'),
+      onTap: _handleLogin,
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 15),
@@ -122,8 +142,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        _entryField("UserName (Email address)"),
-        _entryField("Password", isPassword: true),
+        _entryField("UserName (Email address)", initialValue: 'test_purchaser@gmail.com'),
+        _entryField("Password", isPassword: true, initialValue: 'password'),
       ],
     );
   }

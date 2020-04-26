@@ -1,65 +1,59 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:stewgo_app/models/productList.dart';
-import 'package:stewgo_app/models/product.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:stewgo_app/redux/states/appState.dart';
+import 'package:stewgo_app/redux/states/product.dart';
 import 'package:stewgo_app/utils/dataService.dart';
+import 'package:stewgo_app/utils/formatDateTime.dart';
+import 'package:stewgo_app/widgets/reusableDrawer.dart';
 
 class ProductList extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-   return
-     Consumer<ProductListModel>(
-         builder: (context, mealList, child) {
-           if (mealList.isLoaded()) {
-             return _ListView(mealList.getMeals());
-           } else {
-             return Text('Loading');
-           }
-         }
-       );
-  }
-}
+    return new StoreConnector<AppState, List<Product>>(
+      converter: (store) {
+        var products = new List<Product>();
 
-class _ListView extends StatelessWidget {
-  final List<ProductModel> mealList;
+        store.state.productsById.values.forEach((product) {
+          products.add(product);
+        });
 
-  _ListView(this.mealList);
+        return products;
+      },
+      builder: (context, viewModel) {
+        return Scaffold(
+          drawer: ReusableDrawer(),
+          body: CustomScrollView(
+            slivers: [
+              _MyAppBar(),
+              SliverToBoxAdapter(child: SizedBox(height: 12)),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      if (index < viewModel.length) {
+                        return _MyListItem(viewModel[index]);
+                      } else {
+                        return null;
+                      }
 
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          _MyAppBar(),
-          SliverToBoxAdapter(child: SizedBox(height: 12)),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  if (index < this.mealList.length) {
-                    return _MyListItem(this.mealList[index]);
-                  } else {
-                    return null;
-                  }
-
-              }),
+                  }),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      }
     );
   }
 }
 
 class _MyListItem extends StatelessWidget {
-  final ProductModel meal;
+  final Product meal;
 
   _MyListItem(this.meal, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme.body1;
-    var imageUrl = DataService().getImageUrl(meal.id);
+    var imageUrl = DataService().getImageUrl(meal.image);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -78,8 +72,8 @@ class _MyListItem extends StatelessWidget {
                   children: [
                     Text(meal.name, style: textTheme),
                     Text('Seller:' + meal.merchant, style: textTheme),
-                    Text('Price: \$8.50'),
-                    Text('Available from 8pm')
+                    Text('Price: \$' + meal.price),
+                    Text('Available from ' + formatDateTime(meal.availableDate))
                   ]
                 ),
               )
@@ -98,14 +92,6 @@ class _MyAppBar extends StatelessWidget {
     return SliverAppBar(
       title: Text('Meals', style: Theme.of(context).textTheme.display4),
       floating: true,
-      /*
-      actions: [
-        IconButton(
-          icon: Icon(Icons.home),
-          onPressed: () => Navigator.pushReplacementNamed(context, '/'),
-        ),
-      ],
-       */
     );
   }
 }
