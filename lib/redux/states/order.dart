@@ -26,11 +26,21 @@ class Order {
   }
 
   static Order fromMap(dynamic map) {
+    var merchant;
+    var product;
+
+    map['included'].forEach((dynamic element) {
+      if (element['type'] == 'users') {
+        merchant = User.fromMap(element);
+      }
+      if (element['type'] == 'products') {
+        product = Product.fromMap(element);
+      }
+    });
     return Order(
-      //TODO Michal: find a better way
-      id: map['id'] as int,
-      product: Product.fromMap(map['product']),
-      merchant: User.fromMap(map['merchant'])
+      id: map['data']['id'] as int,
+      product: product,
+      merchant: merchant
     );
   }
 

@@ -36,13 +36,13 @@ class User {
   static User fromMap(dynamic map) {
     return User(
       //TODO Michal: find a better way
-      id: map['id'] as int,
-      username: map['username'] as String,
-      name: map['name'] as String,
-      email: map['email'] as String,
-      phoneNumber: map['phoneNumber'] as String,
-      address: map['address'] as String,
-      pickupInfo: map['pickupInfo'] as String,
+        id: map['id'] as int,
+        username: map['attributes']['username'] as String,
+        name: map['attributes']['name'] as String,
+        email: map['attributes']['email'] as String,
+        phoneNumber: map['attributes']['phoneNumber'] as String,
+        address: map['attributes']['address'] as String,
+        pickupInfo: map['attributes']['pickupInfo'] as String
     );
   }
 

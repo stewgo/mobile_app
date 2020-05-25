@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:stewgo_app/viewModels/productList.dart';
 import 'package:stewgo_app/redux/states/appState.dart';
-import 'package:stewgo_app/redux/states/product.dart';
+import 'package:stewgo_app/redux/states/product.dart' as ProductState;
+import 'package:stewgo_app/redux/states/user.dart';
+import 'package:stewgo_app/screens/product.dart';
 import 'package:stewgo_app/utils/dataService.dart';
 import 'package:stewgo_app/utils/formatDateTime.dart';
 import 'package:stewgo_app/widgets/reusableDrawer.dart';
 
+
 class ProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new StoreConnector<AppState, List<Product>>(
-      converter: (store) {
-        var products = new List<Product>();
-
-        store.state.productsById.values.forEach((product) {
-          products.add(product);
-        });
-
-        return products;
-      },
+    return new StoreConnector<AppState, ProductListModel>(
+      converter: (store) => ProductListModel.fromStore(store),
       builder: (context, viewModel) {
         return Scaffold(
           drawer: ReusableDrawer(),
@@ -29,8 +25,11 @@ class ProductList extends StatelessWidget {
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                     (context, index) {
-                      if (index < viewModel.length) {
-                        return _MyListItem(viewModel[index]);
+                      if (index < viewModel.products.length) {
+                        final product = viewModel.products[index];
+                        final merchant = viewModel.usersById[product.merchantId];
+
+                        return _MyListItem(product, merchant);
                       } else {
                         return null;
                       }
@@ -46,9 +45,10 @@ class ProductList extends StatelessWidget {
 }
 
 class _MyListItem extends StatelessWidget {
-  final Product meal;
+  final ProductState.Product meal;
+  final User merchant;
 
-  _MyListItem(this.meal, {Key key}) : super(key: key);
+  _MyListItem(this.meal, this.merchant, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class _MyListItem extends StatelessWidget {
       child: LimitedBox(
         maxHeight: 150,
         child: GestureDetector(
-          onTap: () => Navigator.pushNamed(context, '/product', arguments: meal),
+          onTap: () => Navigator.pushNamed(context, '/product', arguments: ProductScreenArguments(meal, merchant)),
           child: Row(
             children: [
               Image.network(imageUrl, width: 150, height: 150),
@@ -71,7 +71,7 @@ class _MyListItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(meal.name, style: textTheme),
-                    Text('Seller:' + meal.merchant, style: textTheme),
+                    Text('Seller:' + merchant.name, style: textTheme),
                     Text('Price: \$' + meal.price),
                     Text('Available from ' + formatDateTime(meal.availableDate))
                   ]

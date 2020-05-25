@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
 
     return StoreProvider(
         store: store,
-    // Using MultiProvider is convenient when providing multiple objects.
+        // Using MultiProvider is convenient when providing multiple objects.
         child: MultiProvider(
           providers: [
 

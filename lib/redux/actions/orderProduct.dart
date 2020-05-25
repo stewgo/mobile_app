@@ -2,7 +2,6 @@ import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 import 'package:stewgo_app/main.dart';
 import 'package:stewgo_app/redux/states/order.dart';
-import 'package:stewgo_app/redux/states/product.dart';
 import 'package:stewgo_app/utils/dataService.dart';
 
 ThunkAction orderProduct(int productId) {
@@ -11,7 +10,7 @@ ThunkAction orderProduct(int productId) {
       final accessToken = store.state.accessToken;
 
       DataService().orderProduct(productId, accessToken).then((Map<String, dynamic> result) {
-        if (result.containsKey('id')) {
+        if (result.containsKey('data')) {
           print(result);
           final order = Order.fromMap(result);
 

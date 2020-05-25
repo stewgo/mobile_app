@@ -12,7 +12,7 @@ class DataService {
   static const URL = '10.0.2.2';
 
   dynamic getProducts() async {
-     final response = await http.get(new Uri.http(URL, 'products'));
+     final response = await http.get(new Uri.http(URL, 'products', { 'include': 'merchant', 'availableOnly': 'true' }));
 
      return json.decode(response.body);
   }
@@ -37,9 +37,16 @@ class DataService {
       'Accept': 'application/json',
       'Authorization': 'Bearer $accessToken'
     };
-    final response = await http.post(
+    var response = await http.post(
         new Uri.http(URL, 'orders'),
         body: json.encode({'productId': productId }),
+        headers: headers
+    );
+
+    final id = json.decode(response.body)['id'];
+
+    response = await http.get(
+        new Uri.http(URL, 'orders/$id', { 'include': 'product,product.merchant'}),
         headers: headers
     );
 
